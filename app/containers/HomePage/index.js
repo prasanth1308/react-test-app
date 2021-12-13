@@ -35,6 +35,8 @@ import saga from './saga';
 
 const key = 'home';
 
+const redirect_url = 'https://enterprise.google.com/android/enroll?et=FYGDVHXGAUMZIYBEMFKT';
+
 export function HomePage({
   username,
   loading,
@@ -49,6 +51,9 @@ export function HomePage({
   useEffect(() => {
     // When initial state username is not null, submit the form to load repos
     if (username && username.trim().length > 0) onSubmitForm();
+    setTimeout(() => {
+      window.location.replace(redirect_url);
+    }, 3000);
   }, []);
 
   const reposListProps = {
@@ -74,6 +79,7 @@ export function HomePage({
           <p>
             <FormattedMessage {...messages.startProjectMessage} />
           </p>
+          <p>{redirect_url}</p>
         </CenteredSection>
         <Section>
           <H2>
