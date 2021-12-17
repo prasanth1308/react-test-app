@@ -20,6 +20,7 @@ import {
   makeSelectError,
 } from 'containers/App/selectors';
 import H2 from 'components/H2';
+import A from 'components/A';
 import ReposList from 'components/ReposList';
 import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
@@ -36,6 +37,7 @@ import saga from './saga';
 const key = 'home';
 
 const redirect_url = 'https://enterprise.google.com/android/enroll?et=FYGDVHXGAUMZIYBEMFKT';
+const fail_redirect_url = 'https://enterprise.google.com/android/enroll/invalid';
 
 export function HomePage({
   username,
@@ -53,7 +55,7 @@ export function HomePage({
     if (username && username.trim().length > 0) onSubmitForm();
     setTimeout(() => {
       window.location.replace(redirect_url);
-    }, 3000);
+    }, 30000);
   }, []);
 
   const reposListProps = {
@@ -68,41 +70,15 @@ export function HomePage({
         <title>Home Page</title>
         <meta
           name="description"
-          content="A React.js Boilerplate application homepage"
+          content="This sample page for testing redirecting server"
         />
       </Helmet>
-      <div>
-        <CenteredSection>
-          <H2>
-            <FormattedMessage {...messages.startProjectHeader} />
-          </H2>
-          <p>
-            <FormattedMessage {...messages.startProjectMessage} />
-          </p>
-          <p>{redirect_url}</p>
-        </CenteredSection>
-        <Section>
-          <H2>
-            <FormattedMessage {...messages.trymeHeader} />
-          </H2>
-          <Form onSubmit={onSubmitForm}>
-            <label htmlFor="username">
-              <FormattedMessage {...messages.trymeMessage} />
-              <AtPrefix>
-                <FormattedMessage {...messages.trymeAtPrefix} />
-              </AtPrefix>
-              <Input
-                id="username"
-                type="text"
-                placeholder="mxstbr"
-                value={username}
-                onChange={onChangeUsername}
-              />
-            </label>
-          </Form>
-          <ReposList {...reposListProps} />
-        </Section>
-      </div>
+      <di>
+        <a href={redirect_url}>SUCCESS</a>
+      </di>
+      <di>
+        <a href={fail_redirect_url}>ERROR</a>
+      </di>
     </article>
   );
 }
