@@ -70,11 +70,15 @@ export function HomePage({
         <title>Home Page</title>
         <meta
           name="description"
-          content="This sample page for testing redirecting server"
+          content="This sample page for testing redirecting server, click on the link simulate the result. Note: it will be redirected to success case after 30 seconds"
         />
       </Helmet>
       <di>
         <a href={redirect_url}>SUCCESS</a>
+      </di>
+      <di>
+        <p>This for space</p>
+        <p>This too for space</p> 
       </di>
       <di>
         <a href={fail_redirect_url}>ERROR</a>
